@@ -408,10 +408,6 @@ int starte_Formeln() {
                         system("cls");
                     }
 
-                    if(a > 0 && b > 0 && c > 0) {
-                        U = a + b + c;
-                        A = (a * b) / 2;
-                    }
                     if(a == -1 && b > 0 && c > 0) {
                         a = sqrt(pow(c, 2) - pow(b, 2));
                     }
@@ -420,15 +416,27 @@ int starte_Formeln() {
                     }
                     if(a > 0 && b > 0 && c == -1) {
                         c = sqrt(pow(a, 2) * pow(b, 2));
+                    } 
+                    if(a > 0 && b > 0 && c > 0) {
+                        U = a + b + c;
+                        A = (a * b) / 2;
                     }
 
+
                     printf("+--------------------------------------+\n");
-                    printf("| a = %.2lf = \u221A%.2lf^2 - %.2lf^2\n", a, c, b);
-                    printf("| b = %.2lf = \u221A%.2lf^2 - %.2lf^2\n", b, c, a);
-                    printf("| c = %.2lf = \u221A%.2lf^2 + %.2lf^2\n", c, a, b);
+                    printf("| a = %.2lf = Wurzel aus %.2lf^2 - %.2lf^2\n", a, c, b);
+                    printf("| b = %.2lf = Wurzel aus %.2lf^2 - %.2lf^2\n", b, c, a);
+                    printf("| c = %.2lf = Wurzel aus %.2lf^2 + %.2lf^2\n", c, a, b);
                     printf("| U = %.2lf = %.2lf + %.2lf + %.2lf\n", U, a, b, c);
                     printf("| A = %.2lf = (%.2lf * %.2lf) / 2\n", A, a, b);
                     printf("+--------------------------------------+");
+
+                    printf("\n\nDruecke Enter fuer eine neue Rechnung: ");
+
+                    while (getchar() != '\n');
+                    getchar();
+                        system("cls");                                      
+                        sleep(1); 
 
                 }
                 break;
@@ -448,7 +456,7 @@ int starte_Formeln() {
 
                     printf("a: ");
                     scanf("%lf", &a);
-                    if(a == - 1) {
+                    if(a == -1) {
                         scanf(" %c", &keineAngabe[0]);
                         printf("Umfang: ");
                         if(scanf("%lf", &U) == -1) {
@@ -470,7 +478,7 @@ int starte_Formeln() {
                     if(c == -1) {
                         scanf(" %c", &keineAngabe[0]);
                         printf("Umfang: ");
-                        if(scanf("%lf", U) == -1) {
+                        if(scanf("%lf", &U) == -1) {
                             printf("Flaeche: ");
                             scanf("%lf", &A);
                         }
@@ -482,18 +490,13 @@ int starte_Formeln() {
                         scanf(" %c", &keineAngabe[0]);
                     }
 
-                    if(a == -1 || c == -1 || hc == -1 || U == -1 || A == -1){
+                    if(a == -1 && c == -1 && hc == -1 && U == -1 && A == -1){
                         printf("Berechnung nicht moeglich!");
                         sleep(2);
                         system("cls");
                     }
+
                     
-                    if(a > 0 && c > 0) {
-                        U = 2 * a + c;
-                    }
-                    if(c > 0 && hc > 0) {
-                        A = (c * hc) / 2;
-                    }
                     if(a == -1 && c > 0) {
                         a = (U - c) / 2;
                     }
@@ -503,6 +506,28 @@ int starte_Formeln() {
                     if(a > 0 && c > 0 && hc == -1) {
                         hc = sqrt(pow(a, 2) - pow((c / 2), 2));
                     }
+                    if(a > 0 && c > 0) {
+                        U = 2 * a + c;
+                    }
+                    if(c > 0 && hc > 0) {
+                        A = (c * hc) / 2;
+                    }
+
+
+                    printf("+------------------------------------+\n");
+                    printf("| a = %.2lf = (%.2lf - %.2lf) / 2\n", a, U, c);
+                    printf("| c = %.2lf = %.2lf - 2 * %.2lf\n", c, U, a);
+                    printf("| hc = %.2lf = Wurzel aus %.2lf^2 - (%.2lf /2)^2\n", hc, a, c);
+                    printf("| U = %.2lf = 2 * %.2lf + %.2lf\n", U, a, c);
+                    printf("| A = %.2lf = (%.2lf * %.2lf) / 2\n", A, c, hc);
+                    printf("+------------------------------------+");
+
+                    printf("\n\nDruecke Enter fuer eine neue Rechnung: ");
+
+                    while (getchar() != '\n');
+                    getchar();
+                        system("cls");                                      
+                        sleep(1); 
                 }
                 break;
             }       
