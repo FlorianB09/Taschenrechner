@@ -8,7 +8,6 @@ int starte_Formeln() {
     int Allgemeines_Dreieck = 0;
     int Rechtwinkliges_Dreieck = 0;
     int Gleichschenkliges_Dreieck = 0;
-    int Pythagoras = 0;
     int Kreis = 0;
     int Wuerfel = 0;
     int Quader = 0;
@@ -530,7 +529,87 @@ int starte_Formeln() {
                         sleep(1); 
                 }
                 break;
+            case 6:
+                    printf("+---------------------------------------------------------------------------------------+\n");                                 
+                    printf("|                                      Kreis                                            |\n");
+                    printf("|                          (x eingeben falls keine Angabe)                              |\n");
+                    printf("| '0' eingeben um zu Formeln zurueckzukehren (Nur eingeben wenn nach 'r' gefragt wird)  |\n");
+                    printf("+---------------------------------------------------------------------------------------+\n");
+
+                    r = -1;
+                    d = -1;
+
+                    printf("r: ");
+                    scanf("%lf", &r);
+                    if(r == -1) {
+                        scanf(" %c", &keineAngabe[0]);
+                        printf("Umfang: ");
+                        if(scanf("%lf", &U) == -1) {
+                            printf("Flaeche: ");
+                            scanf("%lf", &A);
+                        }
+                    }
+
+                    if(r == 0) {
+                        system("cls");
+                        printf("Kehre zu Formeln zurueck...");
+                        sleep(1);
+                        system("cls");
+                        break;
+                    }
+
+                    printf("d: ");
+                    scanf("%lf", &d);
+                    if(d == -1) {
+                        printf("Umfang: ");
+                        if(scanf("%lf", &U) == -1) {
+                            printf("Flaeche: ");
+                            scanf("%lf", &A);
+                        }
+                    }
+                    if(r == -1 && d == -1 && U == -1 && A == -1) {
+                        printf("Berechnung nicht moeglich!");
+                        sleep(2);
+                        system("cls");
+                    }
+
+                    if(r == -1 && d > 0) {
+                        r = d / 2;
+                    }
+                    if(r > 0 && d > -1) {
+                        d = r * 2;
+                    }
+                    if(r == -1 && d == -1 && U > 0) {
+                        r = U / 2 * Pi;
+                        d = U / Pi;
+                    }
+                    if(r == -1 && A > 0) {
+                        sqrt(A / Pi);
+                    }
+                    if(r > 0 && A == -1) {
+                        A = pow(r, 2) * Pi;
+                    } 
+                    if(r > 0 || d > 0 && U == -1) {
+                        U = 2 * r * Pi;
+                        U = d * Pi;
+                    }
+
+                    printf("+------------------------------+");
+                    printf("| r = %.2lf = %.2lf / 2", r, d);
+                    printf("| d = %.2lf = %.2lf * 2", d, r);
+                    printf("| U = %.2lf = %.2lf * %.3lf", U, d, Pi);
+                    printf("| A = %.2lf = %.2lf^2 * %.3lf", A, r, Pi);
+                    printf("+------------------------------+");
+
+                    printf("\n\nDruecke Enter fuer eine neue Rechnung: ");
+
+                    while (getchar() != '\n');
+                    getchar();
+                        system("cls");                                      
+                        sleep(1); 
             }       
+
+
 
     }
 
