@@ -529,7 +529,90 @@ int starte_Formeln() {
                         sleep(1); 
                 }
                 break;
-            case 6:
+            case 6:         // Gleichseitiges Dreieck
+                while(1) {
+                    printf("+---------------------------------------------------------------------------------------+\n");                                 
+                    printf("|                                      Kreis                                            |\n");
+                    printf("|                          (x eingeben falls keine Angabe)                              |\n");
+                    printf("| '0' eingeben um zu Formeln zurueckzukehren (Nur eingeben wenn nach 'a' gefragt wird)  |\n");
+                    printf("+---------------------------------------------------------------------------------------+\n");
+
+                    a = -1;
+                    h = -1;
+                    U = -1;
+                    A = -1;
+
+                    printf("a: ");
+                    scanf("%lf", &a);
+                    if(a == -1) {
+                        scanf(" %c", &keineAngabe);
+                    }
+
+                    if(a == 0) {
+                        system("cls");
+                        printf("Kehre zu Formeln zurueck...");
+                        sleep(1);
+                        system("cls");
+                        break;
+                    }
+
+                    printf("h: ");
+                    scanf("%lf", &h);
+                    if(h == -1) {
+                        scanf(" %c", &keineAngabe);
+                    }
+
+
+                    printf("Umfang: ");
+                    scanf("%lf", &U);
+                    if(U == -1) {
+                        scanf(" %c", &keineAngabe);
+                    }
+
+                    printf("Flaeche: ");
+                    scanf("%lf", &A);
+                    if(A == -1) {
+                        scanf(" %c", &keineAngabe);
+                    }
+
+                    if(a == -1 && h == -1 && U == -1 && A == -1) {
+                        printf("Berechnung nicht moeglich!");
+                        sleep(2);
+                        system("cls");
+                    }
+
+                    if(a == -1 && h > 0) {
+                        a = (2 * h) / sqrt(3);
+                    }
+                    if(a > 0 && h == -1) {
+                        h = (a * sqrt(3)) / 2;
+                    }
+                    if(U == -1 && a > 0) {
+                        U = 3 * a;
+                    }
+                    if(A == -1 && a > 0) {
+                        A = (pow(a, 2) * sqrt(3)) / 4;
+                    }
+
+                    printf("+-------------------------------+\n");
+                    printf("| a = %.2lf = (2 * %.lf) / Wurzel aus 3\n", a, h);
+                    printf("| h = %.2lf = (%.lf * Wurzel aus 3) / 2\n", h, a);
+                    printf("| U = %.2lf = 3 * %.2lf\n", U, a);
+                    printf("| A = %.2lf = (%.2lf^2 * Wurzel aus 3) / 4\n", A, a);
+                    printf("+-------------------------------+");
+
+                    printf("\n\nDruecke Enter fuer eine neue Rechnung: ");
+
+                    while (getchar() != '\n');
+                    getchar();
+                        system("cls");                                      
+                        sleep(1); 
+                }
+                break;
+
+
+            case 7:         // Kreis
+                while(1) {
                     printf("+---------------------------------------------------------------------------------------+\n");                                 
                     printf("|                                      Kreis                                            |\n");
                     printf("|                          (x eingeben falls keine Angabe)                              |\n");
@@ -594,11 +677,11 @@ int starte_Formeln() {
                         U = d * Pi;
                     }
 
-                    printf("+------------------------------+");
-                    printf("| r = %.2lf = %.2lf / 2", r, d);
-                    printf("| d = %.2lf = %.2lf * 2", d, r);
-                    printf("| U = %.2lf = %.2lf * %.3lf", U, d, Pi);
-                    printf("| A = %.2lf = %.2lf^2 * %.3lf", A, r, Pi);
+                    printf("+------------------------------+\n");
+                    printf("| r = %.2lf = %.2lf / 2\n", r, d);
+                    printf("| d = %.2lf = %.2lf * 2\n", d, r);
+                    printf("| U = %.2lf = %.2lf * %.3lf\n", U, d, Pi);
+                    printf("| A = %.2lf = %.2lf^2 * %.3lf\n", A, r, Pi);
                     printf("+------------------------------+");
 
                     printf("\n\nDruecke Enter fuer eine neue Rechnung: ");
@@ -607,7 +690,8 @@ int starte_Formeln() {
                     getchar();
                         system("cls");                                      
                         sleep(1); 
-            }       
+                }
+                break;       
 
 
 
