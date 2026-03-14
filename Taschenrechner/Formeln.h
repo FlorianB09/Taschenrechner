@@ -27,6 +27,10 @@ int starte_Formeln() {
     double const Pi = 3.14159265358979;
     double A = 0;
     double U = 0;
+    double O = 0;
+    double V = 0;
+    double G = 0;
+    double M = 0;
     double Ergebnis = 0;
 
     while(1){
@@ -529,6 +533,7 @@ int starte_Formeln() {
                         sleep(1); 
                 }
                 break;
+
             case 6:         // Gleichseitiges Dreieck
                 while(1) {
                     printf("+---------------------------------------------------------------------------------------+\n");                                 
@@ -691,7 +696,74 @@ int starte_Formeln() {
                         system("cls");                                      
                         sleep(1); 
                 }
-                break;       
+                break; 
+            
+            case 8:
+                while(1) {
+
+                    printf("+---------------------------------------------------------------------------------------+\n");                                 
+                    printf("|                                      Wuerfel                                          |\n");
+                    printf("|                          (x eingeben falls keine Angabe)                              |\n");
+                    printf("| '0' eingeben um zu Formeln zurueckzukehren (Nur eingeben wenn nach 'a' gefragt wird)  |\n");
+                    printf("+---------------------------------------------------------------------------------------+\n");
+
+                    a = -1;
+                    O = -1;
+                    V = -1;
+                    G = -1;
+
+                    printf("a: ");
+                    scanf("%lf", &a);
+                    if(a == -1) {
+                        scanf(" %c", &keineAngabe);
+                        printf("Oberflaeche: ");
+                        if(scanf("%lf", &O) == -1) {
+                            printf("Volumen: ");
+                            scanf("%lf", &V);
+                        }
+                    }
+
+                    if(a == 0) {
+                        system("cls");
+                        printf("Kehre zu Formeln zurueck...");
+                        sleep(1);
+                        system("cls");
+                        break;
+                    }
+
+                    if(a == -1 && V == -1 && O == -1) {
+                        printf("Berechnung nicht moeglich!");
+                        sleep(2);
+                        system("cls");
+                    }
+
+                    if(a == -1 && O > 0) {
+                        a = sqrt(O / 6);
+                    }
+                    else if(V > 0) {
+                        a = cbrt(V);
+                    }
+                    if(a > 0 && O == -1) {
+                        O = 6 * pow(a, 2);
+                    }
+                    else if(V == -1) {
+                        V = pow(a, 3);
+                    }
+
+                    printf("+-----------------------------------+\n");
+                    printf("| a = %.2lf = Wurzel aus %.2lf / 6\n", a, O);
+                    printf("| O = %.2lf = 6 * %.2lf^2\n", O, a);
+                    printf("| V = %.2lf = %.2lf^3\n", V, a);
+                    printf("+-----------------------------------+");
+
+                    printf("\n\nDruecke Enter fuer eine neue Rechnung: ");
+
+                    while (getchar() != '\n');
+                    getchar();
+                        system("cls");                                      
+                        sleep(1); 
+                }
+                break;
 
 
 
