@@ -716,10 +716,13 @@ int starte_Formeln() {
                     scanf("%lf", &a);
                     if(a == -1) {
                         scanf(" %c", &keineAngabe);
-                        printf("Oberflaeche: ");
-                        if(scanf("%lf", &O) == -1) {
-                            printf("Volumen: ");
-                            scanf("%lf", &V);
+                        printf("Grundflaeche: ");
+                        if(scanf("%lf", &G) == -1) {
+                            printf("Oberflaeche: ");
+                            if(scanf("%lf", &O) == -1){
+                                printf("Volumen: ");
+                                scanf("%lf", &V);
+                            }
                         }
                     }
 
@@ -731,7 +734,7 @@ int starte_Formeln() {
                         break;
                     }
 
-                    if(a == -1 && V == -1 && O == -1) {
+                    if(a == -1 && V == -1 && O == -1 && G == -1) {
                         printf("Berechnung nicht moeglich!");
                         sleep(2);
                         system("cls");
@@ -739,6 +742,9 @@ int starte_Formeln() {
 
                     if(a == -1 && O > 0) {
                         a = sqrt(O / 6);
+                    }
+                    else if(G > 0) {
+                        a = sqrt(G);
                     }
                     else if(V > 0) {
                         a = cbrt(V);
@@ -749,12 +755,131 @@ int starte_Formeln() {
                     else if(V == -1) {
                         V = pow(a, 3);
                     }
+                    else if(G == -1) {
+                        G = pow(a, 2);
+                    }
 
                     printf("+-----------------------------------+\n");
                     printf("| a = %.2lf = Wurzel aus %.2lf / 6\n", a, O);
                     printf("| O = %.2lf = 6 * %.2lf^2\n", O, a);
                     printf("| V = %.2lf = %.2lf^3\n", V, a);
+                    printf("| G = %.2lf = %.2lf^2\n", G, a);
                     printf("+-----------------------------------+");
+
+                    printf("\n\nDruecke Enter fuer eine neue Rechnung: ");
+
+                    while (getchar() != '\n');
+                    getchar();
+                        system("cls");                                      
+                        sleep(1); 
+                }
+                break;
+
+            case 9:         // Quader
+                while(1) {
+
+                    printf("+---------------------------------------------------------------------------------------+\n");                                 
+                    printf("|                                      Quader                                           |\n");
+                    printf("|                          (x eingeben falls keine Angabe)                              |\n");
+                    printf("| '0' eingeben um zu Formeln zurueckzukehren (Nur eingeben wenn nach 'r' gefragt wird)  |\n");
+                    printf("+---------------------------------------------------------------------------------------+\n");
+
+                    a = -1;
+                    b = -1;
+                    h = -1;
+                    O = -1;
+                    V = -1;
+
+                    printf("a: ");
+                    scanf("%lf", &a);
+                    if(a == -1) {
+                        scanf(" %c", &keineAngabe);
+                        printf("Volumen:");
+                        if(scanf("%lf", &V) == -1){
+                            printf("Oberflaeache: ");
+                            if(scanf("%lf", &O) == -1) {
+                                printf("Grundflache: ");
+                                scanf("%lf", &G);
+                            }
+                        }
+                    }
+
+                    if(a == 0) {
+                        system("cls");
+                        printf("Kehre zu Formeln zurueck...");
+                        sleep(2);
+                        system("cls");
+                        break;
+                    }
+
+                    printf("b: ");
+                    scanf("%lf", &b);
+                        if(b == -1) {
+                        scanf(" %c", &keineAngabe);
+                        printf("Volumen:");
+                        if(scanf("%lf", &V) == -1){
+                            printf("Oberflaeache: ");
+                            if(scanf("%lf", &O) == -1) {
+                                printf("Grundflache: ");
+                                scanf("%lf", &G);
+                            }
+                        }
+                    }
+
+                    printf("h: ");
+                    scanf("%lf", &h);
+                        if(b == -1) {
+                        scanf(" %c", &keineAngabe);
+                        printf("Volumen:");
+                        if(scanf("%lf", &V) == -1){
+                            printf("Oberflaeache: ");
+                            if(scanf("%lf", &O) == -1) {
+                                printf("Grundflache: ");
+                                scanf("%lf", &G);
+                            }
+                        }
+                    }
+
+                    if(a == -1 && b == -1 && G == -1 && V == -1 && O == -1) {
+                        printf("Berechnung nicht moeglich!");
+                        sleep(2);
+                        system("cls");
+                    }
+
+                    if(a == -1 && V > 0 && b > 0 && h > 0) {
+                        a = V / (b * h); 
+                    }
+                    else if(O > 0) {
+                        a = (O / 2 - b * h) / b + c;
+                    }
+                    if(b == -1 && V > 0 && a > 0 && h > 0) {
+                        b = V / a * h;
+                    }
+                    else if(O > 0) {
+                        b = (O / 2 - b * c) / a + c;
+                    }
+                    if(h == -1 && V > 0 && a > 0 && b > 0) {
+                        h = V / a * b;
+                    }
+                    else if(O > 0) {
+                        (O / 2 - b * c) / a + b;
+                    }
+                    
+                    if(V == -1 && a > 0 && b > 0 && h > 0) {
+                        V = a * b * c;
+                    }
+                    if(O == -1 && a > 0 && b > 0 && h > 0) {
+                        O = 2 * (a * b + a * h + b * h);
+                    }
+
+                    printf("+------------------------------------+\n");
+                    printf("| a = %2.lf = %.2lf / (%.2lf * %.2lf)\n", a, V, b, h);
+                    printf("| b = %2.lf = %.2lf / (%.2lf * %.2lf)\n", b, V, a, h);
+                    printf("| h = %2.lf = %.2lf / (%.2lf * %.2lf)\n", h, V, a, b);
+                    printf("| O = %.2lf = 2 * (%.2lf * %.2lf + %.2lf * %.2lf + %.2lf * %.2lf)\n", O, a, b, a, c, b, c);
+                    printf("| V = %.2lf = %.2lf * %.2lf * %.2lf * %.2lf\n", V, a, b, c);
+                    printf("+------------------------------------+");
+                    
 
                     printf("\n\nDruecke Enter fuer eine neue Rechnung: ");
 
