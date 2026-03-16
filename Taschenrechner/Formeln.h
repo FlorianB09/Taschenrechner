@@ -135,9 +135,9 @@ int starte_Formeln() {
                     }
                     if(b == -1) {
                         if (U > 0 && a > 0) {
-                            b = (U / 2) - b;
+                            b = (U / 2) - a;
                         }
-                        else if(A > 0 & a > 0) {
+                        else if(A > 0 && a > 0) {
                             b = A / a;
                         }
                     }
@@ -418,7 +418,7 @@ int starte_Formeln() {
                         b = sqrt(pow(c, 2) - pow(a, 2));
                     }
                     if(a > 0 && b > 0 && c == -1) {
-                        c = sqrt(pow(a, 2) * pow(b, 2));
+                        c = sqrt(pow(a, 2) + pow(b, 2));
                     } 
                     if(a > 0 && b > 0 && c > 0) {
                         U = a + b + c;
@@ -537,7 +537,7 @@ int starte_Formeln() {
             case 6:         // Gleichseitiges Dreieck
                 while(1) {
                     printf("+---------------------------------------------------------------------------------------+\n");                                 
-                    printf("|                                      Kreis                                            |\n");
+                    printf("|                              Gleichseitiges Dreieck                                   |\n");
                     printf("|                          (x eingeben falls keine Angabe)                              |\n");
                     printf("| '0' eingeben um zu Formeln zurueckzukehren (Nur eingeben wenn nach 'a' gefragt wird)  |\n");
                     printf("+---------------------------------------------------------------------------------------+\n");
@@ -550,7 +550,7 @@ int starte_Formeln() {
                     printf("a: ");
                     scanf("%lf", &a);
                     if(a == -1) {
-                        scanf(" %c", &keineAngabe);
+                        scanf(" %c", &keineAngabe[0]);
                     }
 
                     if(a == 0) {
@@ -564,20 +564,20 @@ int starte_Formeln() {
                     printf("h: ");
                     scanf("%lf", &h);
                     if(h == -1) {
-                        scanf(" %c", &keineAngabe);
+                        scanf(" %c", &keineAngabe[0]);
                     }
 
 
                     printf("Umfang: ");
                     scanf("%lf", &U);
                     if(U == -1) {
-                        scanf(" %c", &keineAngabe);
+                        scanf(" %c", &keineAngabe[0]);
                     }
 
                     printf("Flaeche: ");
                     scanf("%lf", &A);
                     if(A == -1) {
-                        scanf(" %c", &keineAngabe);
+                        scanf(" %c", &keineAngabe[0]);
                     }
 
                     if(a == -1 && h == -1 && U == -1 && A == -1) {
@@ -600,8 +600,8 @@ int starte_Formeln() {
                     }
 
                     printf("+-------------------------------+\n");
-                    printf("| a = %.2lf = (2 * %.lf) / Wurzel aus 3\n", a, h);
-                    printf("| h = %.2lf = (%.lf * Wurzel aus 3) / 2\n", h, a);
+                    printf("| a = %.2lf = (2 * %.2lf) / Wurzel aus 3\n", a, h);
+                    printf("| h = %.2lf = (%.2lf * Wurzel aus 3) / 2\n", h, a);
                     printf("| U = %.2lf = 3 * %.2lf\n", U, a);
                     printf("| A = %.2lf = (%.2lf^2 * Wurzel aus 3) / 4\n", A, a);
                     printf("+-------------------------------+");
@@ -615,7 +615,6 @@ int starte_Formeln() {
                 }
                 break;
 
-
             case 7:         // Kreis
                 while(1) {
                     printf("+---------------------------------------------------------------------------------------+\n");                                 
@@ -626,6 +625,8 @@ int starte_Formeln() {
 
                     r = -1;
                     d = -1;
+                    U = -1;
+                    A = -1;
 
                     printf("r: ");
                     scanf("%lf", &r);
@@ -664,21 +665,23 @@ int starte_Formeln() {
                     if(r == -1 && d > 0) {
                         r = d / 2;
                     }
-                    if(r > 0 && d > -1) {
+                    if(r > 0 && d > 0) {
                         d = r * 2;
                     }
                     if(r == -1 && d == -1 && U > 0) {
-                        r = U / 2 * Pi;
+                        r = U / (2 * Pi);
                         d = U / Pi;
                     }
                     if(r == -1 && A > 0) {
-                        sqrt(A / Pi);
+                        r = sqrt(A / Pi);
                     }
                     if(r > 0 && A == -1) {
                         A = pow(r, 2) * Pi;
                     } 
-                    if(r > 0 || d > 0 && U == -1) {
+                    if(r > 0 && U == -1) {
                         U = 2 * r * Pi;
+                    }
+                    else if(d > 0){
                         U = d * Pi;
                     }
 
@@ -715,7 +718,7 @@ int starte_Formeln() {
                     printf("a: ");
                     scanf("%lf", &a);
                     if(a == -1) {
-                        scanf(" %c", &keineAngabe);
+                        scanf(" %c", &keineAngabe[0]);
                         printf("Grundflaeche: ");
                         if(scanf("%lf", &G) == -1) {
                             printf("Oberflaeche: ");
@@ -793,7 +796,7 @@ int starte_Formeln() {
                     printf("a: ");
                     scanf("%lf", &a);
                     if(a == -1) {
-                        scanf(" %c", &keineAngabe);
+                        scanf(" %c", &keineAngabe[0]);
                         printf("Volumen:");
                         if(scanf("%lf", &V) == -1){
                             printf("Oberflaeache: ");
@@ -815,7 +818,7 @@ int starte_Formeln() {
                     printf("b: ");
                     scanf("%lf", &b);
                         if(b == -1) {
-                        scanf(" %c", &keineAngabe);
+                        scanf(" %c", &keineAngabe[0]);
                         printf("Volumen:");
                         if(scanf("%lf", &V) == -1){
                             printf("Oberflaeache: ");
@@ -828,8 +831,8 @@ int starte_Formeln() {
 
                     printf("h: ");
                     scanf("%lf", &h);
-                        if(b == -1) {
-                        scanf(" %c", &keineAngabe);
+                        if(h == -1) {
+                        scanf(" %c", &keineAngabe[0]);
                         printf("Volumen:");
                         if(scanf("%lf", &V) == -1){
                             printf("Oberflaeache: ");
@@ -850,23 +853,23 @@ int starte_Formeln() {
                         a = V / (b * h); 
                     }
                     else if(O > 0) {
-                        a = (O / 2 - b * h) / b + c;
+                        a = (O / 2 - b * h) / b + h;
                     }
                     if(b == -1 && V > 0 && a > 0 && h > 0) {
-                        b = V / a * h;
+                        b = V / (a * h);
                     }
                     else if(O > 0) {
-                        b = (O / 2 - b * c) / a + c;
+                        b = (O / 2 - a * h) / (a + h);
                     }
                     if(h == -1 && V > 0 && a > 0 && b > 0) {
-                        h = V / a * b;
+                        h = V / (a * b);
                     }
                     else if(O > 0) {
-                        (O / 2 - b * c) / a + b;
+                        h = (O / 2 - b * h) / a + b;
                     }
                     
                     if(V == -1 && a > 0 && b > 0 && h > 0) {
-                        V = a * b * c;
+                        V = a * b * h;
                     }
                     if(O == -1 && a > 0 && b > 0 && h > 0) {
                         O = 2 * (a * b + a * h + b * h);
@@ -876,8 +879,8 @@ int starte_Formeln() {
                     printf("| a = %2.lf = %.2lf / (%.2lf * %.2lf)\n", a, V, b, h);
                     printf("| b = %2.lf = %.2lf / (%.2lf * %.2lf)\n", b, V, a, h);
                     printf("| h = %2.lf = %.2lf / (%.2lf * %.2lf)\n", h, V, a, b);
-                    printf("| O = %.2lf = 2 * (%.2lf * %.2lf + %.2lf * %.2lf + %.2lf * %.2lf)\n", O, a, b, a, c, b, c);
-                    printf("| V = %.2lf = %.2lf * %.2lf * %.2lf * %.2lf\n", V, a, b, c);
+                    printf("| O = %.2lf = 2 * (%.2lf * %.2lf + %.2lf * %.2lf + %.2lf * %.2lf)\n", O, a, b, a, h, b, h);
+                    printf("| V = %.2lf = %.2lf * %.2lf * %.2lf * %.2lf\n", V, a, b, h);
                     printf("+------------------------------------+");
                     
 
@@ -889,9 +892,7 @@ int starte_Formeln() {
                         sleep(1); 
                 }
                 break;
-
-
-
+            }
     }
 
     return 0;
